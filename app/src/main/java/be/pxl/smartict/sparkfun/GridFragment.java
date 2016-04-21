@@ -52,7 +52,7 @@ public class GridFragment extends Fragment {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             final String url = String.format(urlFormat, id);
             SparkUtility.performWebRequest(getActivity(), url);
-            view.setBackgroundColor(SparkUtility.LAST_COLOR);
+            view.setBackgroundColor(ColorFragment.LAST_COLOR);
         }
     }
 
@@ -114,11 +114,8 @@ public class GridFragment extends Fragment {
         // create a new ImageView for each item referenced by the Adapter
         public View getView(int position, View convertView, ViewGroup parent) {
             ImageView imageView = imageViews.get(position);
-            if (imageView == null) {
-                imageView = new ImageView(context);
-                imageView.setLayoutParams(new GridView.LayoutParams(50, 50));
-                imageView.setPadding(10, 10, 10, 10);
-                imageView.setBackgroundColor(Color.RED);
+            if (imageView == null) { // this should never happen
+                imageView = getNewView();
             }
             return imageView;
         }

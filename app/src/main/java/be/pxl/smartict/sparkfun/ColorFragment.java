@@ -15,6 +15,10 @@ import android.widget.SeekBar;
  * Created by stilkin on 20/04/16.
  */
 public class ColorFragment extends Fragment {
+    // last color used by demo application
+    // (note that this is not a proper way to share data between objects)
+    public static int LAST_COLOR = Color.RED;
+
     private ImageView iv_color_preview;
     private SeekBar sb_red, sb_green, sb_blue;
     private Button btn_set_color;
@@ -55,8 +59,8 @@ public class ColorFragment extends Fragment {
             final int green = sb_green.getProgress();
             final int blue = sb_blue.getProgress();
             color = Color.argb(255, red, green, blue);
-            SparkUtility.LAST_COLOR = color;
 
+            LAST_COLOR = color;
             final String url = String.format(urlFormat, red, green, blue);
             SparkUtility.performWebRequest(getActivity(), url);
         }

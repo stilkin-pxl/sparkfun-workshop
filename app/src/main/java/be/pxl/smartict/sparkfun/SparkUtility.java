@@ -1,6 +1,5 @@
 package be.pxl.smartict.sparkfun;
 
-import android.app.Application;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.Log;
@@ -17,7 +16,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 /**
- * Created by stilkin on 20/04/16.
+ * Created by stilkin in april 2016.
+ * Uses com.android.volley library -> add!
  */
 public class SparkUtility {
     public static final String BOARD_URL = "http://192.168.4.1/";
@@ -26,18 +26,22 @@ public class SparkUtility {
     public static final String PIX_URL = "pix?pix=%02d";
     public static final String CLEAR_URL = "clear?clear";
 
-    public static int LAST_COLOR = Color.RED;
-
-    private static RequestQueue requestQueue;
+    private static RequestQueue requestQueue; // Volley request queue
 
     private static RequestQueue getRequestQueue(final Context context) {
-        if (requestQueue == null) {
+        if (requestQueue == null) { // lazy initialization
             requestQueue = Volley.newRequestQueue(context.getApplicationContext());
             requestQueue.getCache().initialize();
         }
         return requestQueue;
     }
 
+    /**
+     * Make a web call to the SparkFun board
+     * @param context pass a context, e.g. the activity or application object
+     * @param requestUrl pass a valid url, e.g. BOARD_URL + CLEAR_URL
+     *                   For some of the URLs you will need to fill in some fields
+     */
     public static void performWebRequest(final Context context, final String requestUrl) {
         final StringRequest stringRequest = new StringRequest(
                 Request.Method.GET,
@@ -47,6 +51,10 @@ public class SparkUtility {
         getRequestQueue(context).add(stringRequest);
     }
 
+    /**
+     * This class is called after a web request is completed.
+     * It provides you with a pop-up indicating the result
+     */
     private static class VolleyResponseListener implements Response.Listener<String> {
         private final Context context;
 
@@ -61,7 +69,10 @@ public class SparkUtility {
         }
     }
 
-
+    /**
+     * This class is called if the web request fails.
+     * It provides you with a pop-up indicating a problem
+     */
     public static class DefaultErrorListener implements Response.ErrorListener {
         private final Context context;
 
@@ -71,7 +82,8 @@ public class SparkUtility {
 
         @Override
         public void onErrorResponse(VolleyError error) {
-            Toast.makeText(context, "Could not get fresh data. \nAre you online?", Toast.LENGTH_SHORT).show();
+            final String msg = "Could not get a response. \nAre you connected to the access point?";
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
             Log.e("ErrorResponse", "" + error);
         }
     }
