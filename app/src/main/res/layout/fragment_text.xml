@@ -2,25 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:orientation="vertical">
 
-    <GridView
-        android:id="@+id/gv_pixel_grid"
+    <EditText
+        android:id="@+id/et_text_input"
         android:layout_width="match_parent"
         android:layout_height="0sp"
-        android:layout_gravity="center"
-        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_gravity="center_horizontal"
         android:layout_weight="4"
-        android:horizontalSpacing="10sp"
-        android:numColumns="8"
-        android:verticalSpacing="10sp" />
+        android:ems="10"
+        android:inputType="textMultiLine" />
 
     <Button
-        android:id="@+id/btn_clear_grid"
+        android:id="@+id/btn_send_text"
         android:layout_width="match_parent"
         android:layout_height="0sp"
         android:layout_weight="1"
-        android:text="Clear grid" />
-
+        android:text="Set scrolling text"/>
 </LinearLayout>

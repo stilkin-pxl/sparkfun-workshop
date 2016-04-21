@@ -47,7 +47,7 @@ public class ColorFragment extends Fragment {
     }
 
     private class ButtonHandler implements View.OnClickListener {
-        private String urlFormat = SparkUtility.BOARD_URL + SparkUtility.RGB_URL;;
+        private final String urlFormat = SparkUtility.BOARD_URL + SparkUtility.RGB_URL;;
 
         @Override
         public void onClick(View v) {

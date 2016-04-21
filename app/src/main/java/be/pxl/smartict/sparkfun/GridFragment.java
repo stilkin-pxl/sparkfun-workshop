@@ -21,7 +21,7 @@ import java.util.List;
  * Created by stilkin on 20/04/16.
  */
 public class GridFragment extends Fragment {
-    private String urlFormat = SparkUtility.BOARD_URL + SparkUtility.PIX_URL;
+    private final String urlFormat = SparkUtility.BOARD_URL + SparkUtility.PIX_URL;
     private GridView gv_pixel_grid;
     private GridAdapter ga_pixel_grid;
     private Button btn_clear_grid;
@@ -57,7 +57,7 @@ public class GridFragment extends Fragment {
     }
 
     private class ClearButtonHandler implements View.OnClickListener {
-        private String clearUrl = SparkUtility.BOARD_URL + SparkUtility.CLEAR_URL;
+        private final String clearUrl = SparkUtility.BOARD_URL + SparkUtility.CLEAR_URL;
 
         @Override
         public void onClick(View v) {

@@ -13,12 +13,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 /**
  * Created by stilkin on 20/04/16.
  */
 public class SparkUtility {
     public static final String BOARD_URL = "http://192.168.4.1/";
-    public static final String MSG_URL = "msg?msg=";
+    public static final String MSG_URL = "msg?msg=%s";
     public static final String RGB_URL = "rgb?rgb=%03d/%03d/%03d";
     public static final String PIX_URL = "pix?pix=%02d";
     public static final String CLEAR_URL = "clear?clear";
@@ -71,5 +74,20 @@ public class SparkUtility {
             Toast.makeText(context, "Could not get fresh data. \nAre you online?", Toast.LENGTH_SHORT).show();
             Log.e("ErrorResponse", "" + error);
         }
+    }
+
+    /**
+     * Encode a string in URL encoding (e.g. with %20 for spaces).
+     * @param text
+     * @return Will return encoded string on success, or unchanged string on failure.
+     */
+    public static String encodeAsUrl (final String text) {
+        String encodedText = text;
+        try {
+            encodedText = URLEncoder.encode(text, "UTF-8");
+        } catch (UnsupportedEncodingException uee) {
+            uee.printStackTrace();
+        }
+        return encodedText;
     }
 }

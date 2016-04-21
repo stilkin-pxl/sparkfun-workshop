@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         vpAdapter = new FragmentAdapter(getSupportFragmentManager());
         viewPager = (ViewPager) findViewById(R.id.vp_fragment_container);
         viewPager.setAdapter(vpAdapter);
-
     }
 
     private static class FragmentAdapter extends FragmentStatePagerAdapter {
@@ -37,8 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
         public FragmentAdapter(FragmentManager fm) {
             super(fm);
-            frags.add(new GridFragment());
+            frags.add(new TextFragment());
             frags.add(new ColorFragment());
+            frags.add(new GridFragment());
         }
 
         @Override
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public int getItemPosition(Object object) {
             final int pos = frags.indexOf(object);
-            if (pos >= 0 ){
+            if (pos >= 0) {
                 return pos;
             } else {
                 return POSITION_NONE;
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public CharSequence getPageTitle(int pos) {
             final Fragment frag = frags.get(pos);
-            if (frag != null ){
+            if (frag != null) {
                 return frag.getClass().getSimpleName();
             } else {
                 return "Nothing";
