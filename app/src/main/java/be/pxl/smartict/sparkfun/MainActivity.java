@@ -4,19 +4,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-
-    private DayMenuFragmentAdapter vpAdapter;
+    private FragmentAdapter vpAdapter;
     private ViewPager viewPager;
 
     @Override
@@ -30,17 +26,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // init viewpager for weekdays
-        vpAdapter = new DayMenuFragmentAdapter(getSupportFragmentManager());
+        vpAdapter = new FragmentAdapter(getSupportFragmentManager());
         viewPager = (ViewPager) findViewById(R.id.vp_fragment_container);
         viewPager.setAdapter(vpAdapter);
 
     }
 
-
-    private static class DayMenuFragmentAdapter extends FragmentStatePagerAdapter {
+    private static class FragmentAdapter extends FragmentStatePagerAdapter {
         private List<Fragment> frags = new ArrayList<Fragment>();
 
-        public DayMenuFragmentAdapter(FragmentManager fm) {
+        public FragmentAdapter(FragmentManager fm) {
             super(fm);
             frags.add(new GridFragment());
             frags.add(new ColorFragment());

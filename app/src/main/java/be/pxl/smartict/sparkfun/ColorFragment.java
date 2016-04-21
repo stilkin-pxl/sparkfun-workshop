@@ -54,6 +54,8 @@ public class ColorFragment extends Fragment {
             final int red = sb_red.getProgress();
             final int green = sb_green.getProgress();
             final int blue = sb_blue.getProgress();
+            color = Color.argb(255, red, green, blue);
+            SparkUtility.LAST_COLOR = color;
 
             final String url = String.format(urlFormat, red, green, blue);
             SparkUtility.performWebRequest(getActivity(), url);

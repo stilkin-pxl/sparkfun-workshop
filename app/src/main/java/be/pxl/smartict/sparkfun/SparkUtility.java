@@ -2,6 +2,7 @@ package be.pxl.smartict.sparkfun;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -20,7 +21,9 @@ public class SparkUtility {
     public static final String MSG_URL = "msg?msg=";
     public static final String RGB_URL = "rgb?rgb=%03d/%03d/%03d";
     public static final String PIX_URL = "pix?pix=%02d";
-    public static final String CLEAR_URL = "clear?clear=";
+    public static final String CLEAR_URL = "clear?clear";
+
+    public static int LAST_COLOR = Color.RED;
 
     private static RequestQueue requestQueue;
 
