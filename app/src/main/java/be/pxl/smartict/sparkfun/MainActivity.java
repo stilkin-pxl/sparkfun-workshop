@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             frags.add(new TextFragment());
             frags.add(new ColorFragment());
             frags.add(new GridFragment());
+            frags.add(new PaintFragment());
         }
 
         @Override
